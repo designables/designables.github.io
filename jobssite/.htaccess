@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+	RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [L,R=301]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /index.php [QSA,L]
+</IfModule>
+
+# BAN USER BY IP
+<Limit GET POST>
+ order allow,deny
+ allow from all
+ deny from 123.63.30.165
+ Deny from 14.99.120.231
+ Deny from 14.99.56.52
+ Deny from 14.99.136.249
+</Limit>
